@@ -1,6 +1,11 @@
 ## 介绍
 这个是一个简单的博客系统，是本人最近在学react弄的一个小demo。ps(本人是非常喜欢react，奈何公司一直用vue开发，所以只能在业余时间自己玩耍，没有人带，都是自己瞎折腾看视频，看别人代码自己撸的)
 
+## 项目构建
+> 不过首先要到be目录要启动后端服务,node版本我用的是v10.15.3
+- `npm i / yarn `: 安装需要的依赖
+- `npm run start / yarn start`: 启动服务
+
 ## 项目结构
 ```
 ├── README.md   // 项目总体说明
@@ -9,15 +14,15 @@
 │   ├── favicon.ico
 │   └── index.html
 ├── src
-│   ├── App.js     // 项目登录权限判断
-│   ├── index.css  // 项目css
-│   ├── index.js   // 项目的入口文件
-│   ├── layouts   // 项目布局
-│   ├── pages     // 项目页面组件
-│   ├── routes    // 项目路由
-│   ├── service   // 项目接口
-│   ├── store     // store
-│   └── utils     // 工具方法（axios 封装，history)
+│   ├── App.js        项目登录权限判断
+│   ├── index.css     项目css
+│   ├── index.js      项目的入口文件
+│   ├── layouts       项目布局
+│   ├── pages         项目页面组件
+│   ├── routes        项目路由
+│   ├── service       项目接口
+│   ├── store         store
+│   └── utils         工具方法（axios 封装，history)
 └── yarn.lock
 
 ```
