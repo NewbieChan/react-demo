@@ -5,7 +5,7 @@ import store from '../store';
 
 // 创建axios实例
 const http = axios.create({
-  baseURL: '',
+  baseURL: 'http://localhost:3000',
   timeout: 5000,
 });
 

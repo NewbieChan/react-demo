@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Form, Icon, Input, Button,
 } from 'antd';
+import { Link } from 'react-router-dom';
 import './login.css';
 import { connect } from 'react-redux';
 import { loginFn } from '../../store/user/actions'; 
@@ -23,6 +24,9 @@ class NormalLoginForm extends Component {
       <div className="loginForm-wrapper">
          <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
+            <h2>登 录</h2>
+          </Form.Item>
+          <Form.Item>
             {getFieldDecorator('username', {
               rules: [{ required: true, message: '请输入用户名!' }],
             })(
@@ -38,8 +42,9 @@ class NormalLoginForm extends Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block>
-              Log in
+              登 录
             </Button>
+            没有账号 <Link to="/register">注册用户</Link>
           </Form.Item>
         </Form>
       </div>

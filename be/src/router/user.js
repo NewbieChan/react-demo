@@ -1,5 +1,6 @@
 const {
   login,
+  register
 } = require('../controller/user');
 const { SuccessModel, ErrorModel } = require('../model');
 const { set, del } = require('../db/redis');
@@ -13,6 +14,20 @@ const getExpiresTime = () => {
 
 const handleUserRoute = (req, res) => {
   const method = req.method;
+  // 登出路由
+  if (method === 'POST' && req.path === '/user/register') {
+    const username = req.body.username || '';
+    const password = req.body.password || '';
+    const realname = req.body.realname || '';
+    return register(username, password, realname).then(data => {
+      console.log(data);
+      if (data.insertId) {
+        return new SuccessModel('注册成功');
+      } else {
+        return new ErrorModel('注册失败');
+      }
+    })
+  }
   // 登录路由
   if (method === 'POST' && req.path === '/user/login') {
     const username = req.body.username || '';
@@ -23,7 +38,6 @@ const handleUserRoute = (req, res) => {
         set('username', user.username).then(res => {
           console.log('将session成功写入redis- ', res);
         })
-        // res.setHeader('Set-Cookie', `username=${user.username}; path=/; httpOnly; expires=${getExpiresTime()}`);
         return new SuccessModel({ token: 'username' }, '登录成功');
       } else {
         return new ErrorModel('登录失败');

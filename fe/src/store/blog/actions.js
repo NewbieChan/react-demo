@@ -1,6 +1,7 @@
 import * as types from '../actionTypes';
 import history from '../../utils/history';
 import BlogFetch from '../../service/blog';
+import { message } from 'antd';
 
 export const getAddTodoItem = (payload) => ({
   type: types.ADD_TODO_ITEM,
@@ -36,6 +37,7 @@ export const addBlog = (title, content) => {
   return async dispatch => {
     const res = await BlogFetch.addBlog({ title, content });
     if (res.success) {
+      message.success('添加博客成功');
       history.go(-1);
     }
   }
@@ -45,6 +47,8 @@ export const updateBlog = (id, title, content) => {
   return async dispatch => {
     const res = await BlogFetch.updateBlog({ id, title, content });
     if (res.success) {
+      message.success('更新博客成功');
+      history.go(-1);
       history.go(-1);
       dispatch(getInfo({}));
     }
@@ -55,6 +59,7 @@ export const deleteBlog = (id) => {
   return async dispatch => {
     const res = await BlogFetch.deleteBlog({ id });
     if (res.success) {
+      message.success('删除博客成功');
       const action = getTodoList();
       dispatch(action);
     }

@@ -7,6 +7,13 @@ const login = (username, password) => {
   return exec(sql);
 }
 
+const register = (username, password, realname) => {
+  const sql = ` insert into tbl_users (username, password, realname) 
+  values ('${username}', '${password}', '${realname}')`;
+  return exec(sql);
+}
+
 module.exports = {
   login,
+  register,
 };

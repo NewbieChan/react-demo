@@ -6,6 +6,7 @@ import DefaultLayout from './layouts/DefaultLayout';
 import routes from './routes';
 
 const loginRoute = routes.find(({ path }) => path === '/login');
+const registerRoute = routes.find(({ path }) => path === '/register');
 
 class App extends Component {
   componentDidMount() {
@@ -20,6 +21,14 @@ class App extends Component {
     const { auth } = this.props;
     return (
       <Switch>
+        <Route exact path={registerRoute.path} render= {({ history }) => {
+          const Register = registerRoute.component
+          if (auth) {
+            return <Redirect to="/blog" />
+          } else {
+            return <Register history={history} />
+          }
+        }} />
         <Route exact path={loginRoute.path} render={({ history }) => {
           const Login = loginRoute.component
           if (auth) {

@@ -1,6 +1,7 @@
 import * as types from '../actionTypes';
 import history from '../../utils/history';
 import UserFetch from '../../service/user';
+import { message } from 'antd';
 
 export const login = (payload) => ({
   type: types.LOGIN,
@@ -10,6 +11,16 @@ export const login = (payload) => ({
 export const logout = () => ({
   type: types.LOGOUT,
 })
+
+export const registerFn = (username, password, realname) => {
+  return async dispatch => {
+    const res = await UserFetch.register({ username, password, realname });
+    if (res.success) {
+      message.success('注册成功');
+      dispatch(loginFn(username, password));
+    }
+  }
+}
 
 export const loginFn = (username, password) => {
   return async dispatch => {
