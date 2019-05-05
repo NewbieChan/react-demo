@@ -1,0 +1,10 @@
+.blog-detail {
+  padding: 20px 25px;
+}
+.blog-title {
+  text-align: center;
+}
+.blog-time,
+.blog-author {
+  padding: 15px 15px 15px 0;
+}
