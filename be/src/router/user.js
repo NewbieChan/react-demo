@@ -20,7 +20,6 @@ const handleUserRoute = (req, res) => {
     const password = req.body.password || '';
     const realname = req.body.realname || '';
     return register(username, password, realname).then(data => {
-      console.log(data);
       if (data.insertId) {
         return new SuccessModel('注册成功');
       } else {
@@ -47,7 +46,6 @@ const handleUserRoute = (req, res) => {
   // 登出路由
   if (method === 'POST' && req.path === '/user/logout') {
     return del('username').then(data => {
-      console.log(data);
       return new SuccessModel('退出成功');
     }).catch(err => {
       return new ErrorModel('退出失败');
