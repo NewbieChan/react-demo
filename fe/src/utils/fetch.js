@@ -26,6 +26,7 @@ http.interceptors.request.use(config => {
 
 http.interceptors.response.use(
   res => {
+    debugger;
     const data = res.data;
     // 请求成功的判断
     if (/^2/.test(res.status) && data.code === '000000') {
@@ -49,7 +50,7 @@ http.interceptors.response.use(
           break;
         }
         default: {
-          message.error(res.message, 3);
+          message.error(data.message, 3);
           break;
         }
       }
