@@ -2,9 +2,9 @@ const {
   handleUserRoute,
   handleBlogRoute,
 } = require('./src/router');
-// const { ErrorModel } = require('./src/model');
 const querystring = require('querystring');
 const { get } = require('./src/db/redis');
+const { access } = require('./src/utils/log');
 
 const getPostData = (req) => {
   return new Promise((resolve, reject) => {
@@ -37,8 +37,7 @@ const serverHandle = (req, res) => {
   const url = req.url;
   req.path = url.split('?')[0];
   req.query = querystring.parse(url.split('?')[1]);
-
- 
+  access(req.method + '---' + req.path + '---' + req.headers['user-agent'] + '---' + Date.now())
 
   getPostData(req).then(result => {
     req.body = result;
