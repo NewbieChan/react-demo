@@ -41,6 +41,7 @@ export const logoutFn = () => {
   return async dispatch => {
     const res = await UserFetch.logout();
     if (res.success) {
+      message.success('退出成功');
       dispatch(logout())
       localStorage.clear();
       history.push('/login');
