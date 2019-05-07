@@ -36,3 +36,14 @@
 - **redux-thunk**: 是一个比较流行的 redux 异步 action 中间件，比如 action 中有 ****setTimeout**** 或者通过 ****fetch****通用远程 API 这些场景，那么久应该使用 redux-thunk 了。redux-thunk 帮助你统一了异步和同步 action 的调用方式，把异步过程放在 action 级别解决，对 component 没有影响。
 - **axios**: 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js中。
 - **antd**: 是基于 Ant Design 设计体系的 React UI 组件库，主要用于研发企业级中后台产品。(阿里出品，必属精品)
+
+## 注意⚠️和不足
+> - 需要配置在package.json设置跨越proxy请求
+
+> - 项目样式和功能不够完善
+
+> - 没有使用immutable进行对数据的包装
+
+> - store写的比较乱，没有进一步的封装代码
+
+> - 没有抽取公共的组件到components目录
