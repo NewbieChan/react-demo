@@ -38,6 +38,7 @@ class DefaultLayout extends Component {
     }
     this.setState({ openKeys })
   }
+  // 高亮
   setHighLightKeys = (props) => {
     const { pathname } = props.location
     let selectedKey = ''
@@ -45,7 +46,6 @@ class DefaultLayout extends Component {
     if (pathname) {
       openKey = pathname.substr(1).split('/')[0]
       selectedKey = pathname.substr(1).replace('/', '.')
-      // 对于类似 '/product/' 路由作特殊处理
       if (selectedKey.substr(-1) === '.') {
         selectedKey = selectedKey.substring(0, selectedKey.length - 1)
       }
