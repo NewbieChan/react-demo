@@ -8,11 +8,8 @@
 
 ## 项目结构
 ```
-├── README.md   // 项目总体说明
-├── package.json
-├── public  // 项目模版目录
-│   ├── favicon.ico
-│   └── index.html
+├── README.md         项目总体说明
+├── public            项目模版目录
 ├── src
 │   ├── App.js        项目登录权限判断
 │   ├── index.css     项目css
