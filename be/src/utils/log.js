@@ -15,8 +15,10 @@ const createWriteStream = fileName => {
   return writeStream;
 }
 
+const date = new Date();
+
 // 写访问日志
-const accessWriteStream = createWriteStream('access.log');
+const accessWriteStream = createWriteStream(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.access.log`);
 
 const access = log => {
   writeLog(accessWriteStream, log);

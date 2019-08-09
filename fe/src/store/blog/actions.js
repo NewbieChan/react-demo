@@ -2,6 +2,7 @@ import * as types from '../actionTypes';
 import history from '../../utils/history';
 import BlogFetch from '../../service/blog';
 import { message } from 'antd';
+import { dateFormat } from '../../utils/date_format';
 
 export const getAddTodoItem = (payload) => ({
   type: types.ADD_TODO_ITEM,
@@ -27,7 +28,11 @@ export const getTodoList = () => {
   return async dispatch => {
     const res = await BlogFetch.getBlogList();
     if (res.success) {
-      const action = initListAction(res.data);
+      const data = res.data.map((item) => {
+        item.create_at = dateFormat(item.create_at, 'yyyy-MM-dd hh:mm:ss');
+        return item;
+      });
+      const action = initListAction(data);
       dispatch(action);
     }
   }
@@ -71,6 +76,7 @@ export const getBlogDetail = (id) => {
     if (id) {
       const res = await BlogFetch.getBlogDetail(id);
       if (res.success) {
+        res.data.create_at = dateFormat(res.data.create_at, 'yyyy-MM-dd hh:mm:ss');
         const action = getInfo(res.data);
         dispatch(action);
       }

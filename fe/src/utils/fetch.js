@@ -5,7 +5,7 @@ import store from '../store';
 
 // 创建axios实例
 const http = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: `http://${window.location.host}`,
   timeout: 5000,
 });
 
@@ -21,7 +21,6 @@ http.interceptors.request.use(config => {
   return config;
 }, error => {
   message.error('发起请求出错');
-  return Promise.reject(error);
 });
 
 http.interceptors.response.use(
@@ -65,7 +64,6 @@ http.interceptors.response.use(
     } else {
       message.error(error.message);
     }
-    return Promise.reject(error);
   }
 )
 

@@ -11,6 +11,7 @@ const getList = (author, keyword) => {
   if (keyword) {
     sql += `or title like %${keyword}%`;
   }
+  sql += ' order by create_at desc';
   return exec(sql);
 }
 
