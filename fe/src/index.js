@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { LocaleProvider } from 'antd';
+import history from './utils/history';
 import zh_CN from 'antd/es/locale-provider/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -14,7 +15,7 @@ moment.locale('zh-cn');
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router history={history}>
       <LocaleProvider locale={zh_CN}><App /></LocaleProvider>
     </Router>
   </Provider>,

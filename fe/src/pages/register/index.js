@@ -3,7 +3,7 @@ import {
   Form, Icon, Input, Button,
 } from 'antd';
 import './register.css';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerFn } from '../../store/user/actions'; 
 
@@ -82,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
 
 const RegisterForm = Form.create({ name: 'normal_register' })(NormalRegisterForm);
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default withRouter(connect(null, mapDispatchToProps)(RegisterForm));

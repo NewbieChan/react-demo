@@ -17,7 +17,8 @@ export const registerFn = (username, password, realname) => {
     const res = await UserFetch.register({ username, password, realname });
     if (res.success) {
       message.success('注册成功');
-      dispatch(loginFn(username, password));
+      dispatch(loginFn(username, password))
+      // history.push('/login');
     }
   }
 }
@@ -32,7 +33,7 @@ export const loginFn = (username, password) => {
       }));
       localStorage.setItem('username', username);
       localStorage.setItem('token', res.data.token);
-      history.push('/');
+      history.push('/blog');
     }
   }
 }

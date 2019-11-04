@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Form, Icon, Input, Button,
 } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './login.css';
 import { connect } from 'react-redux';
 import { loginFn } from '../../store/user/actions'; 
@@ -59,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
 
 const LoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm));

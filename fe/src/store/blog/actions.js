@@ -25,7 +25,7 @@ export const getInfo = (blogInfo) => ({
   blogInfo
 })
 
-export const getTodoList = ({pageNo, pageSize}) => {
+export const getTodoList = ({pageNo = 1, pageSize = 10}) => {
   return async dispatch => {
     const res = await BlogFetch.getBlogList({pageNo, pageSize});
     if (res.success) {
@@ -61,12 +61,12 @@ export const updateBlog = (id, title, content) => {
   }
 }
 
-export const deleteBlog = (id) => {
+export const deleteBlog = (id, pageNo, pageSize) => {
   return async dispatch => {
     const res = await BlogFetch.deleteBlog({ id });
     if (res.success) {
       message.success('删除博客成功');
-      const action = getTodoList();
+      const action = getTodoList({pageNo, pageSize});
       dispatch(action);
     }
   }

@@ -5,6 +5,7 @@ import {
   getTodoList,
   deleteBlog,
 } from '../../store/blog/actions'; // 3. 引入 actionCreators
+import { withRouter } from 'react-router-dom';
 import BlogListUI from './BlogListUI';
 import { connect } from 'react-redux';
 import { Modal } from 'antd';
@@ -31,7 +32,7 @@ class BlogList extends Component {
       okType: 'danger',
       cancelText: '取消',
       onOk: () => {
-        this.props.delBlog(id);
+        this.props.delBlog(id, this.state.pageNo, this.pageSize);
       },
       onCancel: () => {
         console.log('Cancel');
@@ -85,7 +86,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getBlogs: (pageNo, pageSize) =>  dispatch(getTodoList({pageNo, pageSize})),
   addBlog: () => dispatch(getAddTodoItem()),
-  delBlog: (id) => dispatch(deleteBlog(id)),
+  delBlog: (id, pageNo, pageSize) => dispatch(deleteBlog(id, pageNo, pageSize)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BlogList));

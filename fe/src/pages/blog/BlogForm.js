@@ -5,6 +5,7 @@ import {
   getBlogDetail,
   updateBlog,
 } from '../../store/blog/actions'; // 3. 引入 actionCreators
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 const { TextArea } = Input;
@@ -107,4 +108,4 @@ const mapDispatchToProps = dispatch => ({
   updateBlog: (id, title, content) => dispatch(updateBlog(id, title, content)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BlogForm));
