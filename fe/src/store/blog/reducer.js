@@ -6,6 +6,7 @@ const defaultState = {
   todoList: [],
   isVisable: false,
   blogInfo: null,
+  total: 0,
 };
 
 export default (state = defaultState, action) => {
@@ -29,6 +30,7 @@ export default (state = defaultState, action) => {
   if (action.type === types.INIT_TODO_LIST) {
     const newState = Object.assign({}, state, {
       todoList: action.list,
+      total: action.total,
     })
     return newState;
   }

@@ -2,15 +2,15 @@ import fetch from '../utils/fetch';
 
 class BlogFetch {
   api = {
-    getBlogList: '/blog/list',
-    getBlogDetail: '/blog/detail',
+    getBlogList: '/blog/getList',
+    getBlogDetail: '/blog/getDetail',
     addBlog: '/blog/add',
     updateBlog: '/blog/update',
     deleteBlog: '/blog/delete',
   }
   // 获取博客列表
-  async getBlogList() {
-    const res = await fetch.get(this.api.getBlogList);
+  async getBlogList(data) {
+    const res = await fetch.get(this.api.getBlogList, { params: data } );
     return res;
   }
   // 获取博客详情

@@ -14,9 +14,10 @@ export const getDeleteTodoItem = (index) => ({
   index,
 })
 
-export const initListAction = (list) => ({
+export const initListAction = (list, total) => ({
   type: types.INIT_TODO_LIST,
   list,
+  total,
 })
 
 export const getInfo = (blogInfo) => ({
@@ -24,15 +25,15 @@ export const getInfo = (blogInfo) => ({
   blogInfo
 })
 
-export const getTodoList = () => {
+export const getTodoList = ({pageNo, pageSize}) => {
   return async dispatch => {
-    const res = await BlogFetch.getBlogList();
+    const res = await BlogFetch.getBlogList({pageNo, pageSize});
     if (res.success) {
-      const data = res.data.map((item) => {
+      const data = res.data.list.map((item) => {
         item.create_at = dateFormat(item.create_at, 'yyyy-MM-dd hh:mm:ss');
         return item;
       });
-      const action = initListAction(data);
+      const action = initListAction(data, res.data.total);
       dispatch(action);
     }
   }

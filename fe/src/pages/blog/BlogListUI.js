@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Divider, Table } from 'antd';
+import { Button, Divider, Table, Pagination } from 'antd';
 import './blog.css';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
@@ -8,6 +8,15 @@ class BlogListUI extends Component {
 
   addBlog = () => {
     this.props.history.push('/blog/add');
+  }
+
+  onChange = (pageNo) => {
+    this.props.handleCurrentChange(pageNo);
+  }
+
+  onShowSizeChange = (pageNo, pageSize) => {
+    console.log(pageNo);
+    this.props.handleSizeChange(pageSize);
   }
   
   render() {
@@ -44,7 +53,18 @@ class BlogListUI extends Component {
           <Button type="primary" onClick={this.addBlog}>新增博客</Button>
         </div>
         <div className="todo-list">
-          <Table columns={columns} dataSource={this.props.todoList} rowKey="id" />
+          <Table columns={columns} dataSource={this.props.todoList} rowKey="id" pagination={false} />
+        </div>
+        <div className="pagination-box">
+          <Pagination 
+            defaultPageSize={this.props.pageSize} 
+            total={this.props.total}
+            onChange={this.onChange}
+            pageSizeOptions={['10', '20', '30', '40']}
+            // showSizeChanger
+            onShowSizeChange={this.onShowSizeChange}
+            defaultCurrent={this.props.pageNo}
+            showTotal={total => `总共 ${total} 条`} />
         </div>
       </div>
     )

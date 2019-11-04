@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
-import DefaultLayout from './layouts/DefaultLayout';
+import DefaultLayout from './layouts/DefaultLayout'; // 默认布局
 import routes from './routes';
 
+// 登录路由
 const loginRoute = routes.find(({ path }) => path === '/login');
+// 注册路由
 const registerRoute = routes.find(({ path }) => path === '/register');
 
 class App extends Component {
@@ -18,17 +20,10 @@ class App extends Component {
   }
 
   render() {
-    const { auth } = this.props;
+    const { auth } = this.props; // 登录凭证
     return (
       <Switch>
-        <Route exact path={registerRoute.path} render= {({ history }) => {
-          const Register = registerRoute.component
-          if (auth) {
-            return <Redirect to="/blog" />
-          } else {
-            return <Register history={history} />
-          }
-        }} />
+        <Route exact path={registerRoute.path} component={registerRoute.component} />
         <Route exact path={loginRoute.path} render={({ history }) => {
           const Login = loginRoute.component
           if (auth) {

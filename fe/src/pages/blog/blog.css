@@ -1,7 +1,7 @@
 .todo {
   width: 100%;
   /* margin: 20px auto 0; */
-  padding: 30px;
+  padding: 20px;
 }
 .todo-title {
   text-align: center;
@@ -17,4 +17,10 @@
 }
 .todo-list {
   margin-top: 30px;
+}
+.pagination-box {
+  padding: 20px 0;
+}
+.pagination-box .ant-pagination {
+  float: right;
 }

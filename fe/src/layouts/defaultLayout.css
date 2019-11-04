@@ -10,5 +10,5 @@
   align-self: center;
 }
 .layout-wrapper {
-  height: 600px;
+  min-height: calc(100vh - 64px);
 }
