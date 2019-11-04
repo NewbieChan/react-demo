@@ -1,17 +1,16 @@
 const { exec } = require('../db/mysql');
 
 // 获取博客列表
-const getList = (author, keyword) => {
+const getList = (author, keyword, pageNo, pageSize) => {
   let sql = `
-    select id, title, content, create_at, author from tbl_blogs where status='1' 
-  `;
+    select id, title, content, create_at, author, (select count(1) from tbl_blogs where status=1 and author='${author}') as total from tbl_blogs where status=1 `;
   if (author) {
     sql += `and author='${author}' `;
   }
   if (keyword) {
     sql += `or title like %${keyword}%`;
   }
-  sql += ' order by create_at desc';
+  sql += ` order by create_at desc limit ${(pageNo - 1) * pageSize},${pageSize}`;
   return exec(sql);
 }
 
