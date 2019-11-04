@@ -28,40 +28,41 @@ routes.filter(({path}) => path !== '/login').forEach(({ path, component, childre
 
 class DefaultLayout extends Component {
   state = {
-    openKeys: [],
-    selectedKeys: []
+    // openKeys: [],
+    // selectedKeys: [],
+    current: 'blog',
   }
-  handleOpenChange = (keys) => {
-    let openKeys = []
-    if (keys.length) {
-      openKeys = keys.slice(-1)
-    }
-    this.setState({ openKeys })
-  }
+  // handleOpenChange = (keys) => {
+  //   let openKeys = []
+  //   if (keys.length) {
+  //     openKeys = keys.slice(-1)
+  //   }
+  //   this.setState({ openKeys })
+  // }
   // 高亮
-  setHighLightKeys = (props) => {
-    const { pathname } = props.location
-    let selectedKey = ''
-    let openKey = ''
-    if (pathname) {
-      openKey = pathname.substr(1).split('/')[0]
-      selectedKey = pathname.substr(1).replace('/', '.')
-      if (selectedKey.substr(-1) === '.') {
-        selectedKey = selectedKey.substring(0, selectedKey.length - 1)
-      }
-    }
-    this.setState({
-      openKeys: [openKey],
-      selectedKeys: [selectedKey]
-    })
-  }
+  // setHighLightKeys = (props) => {
+  //   const { pathname } = props.location
+  //   let selectedKey = ''
+  //   let openKey = ''
+  //   if (pathname) {
+  //     openKey = pathname.substr(1).split('/')[0]
+  //     selectedKey = pathname.substr(1).replace('/', '.')
+  //     if (selectedKey.substr(-1) === '.') {
+  //       selectedKey = selectedKey.substring(0, selectedKey.length - 1)
+  //     }
+  //   }
+  //   this.setState({
+  //     openKeys: [openKey],
+  //     selectedKeys: [selectedKey],
+  //   });
+  // }
 
   componentDidMount() {
-    this.setHighLightKeys(this.props)
+    // this.setHighLightKeys(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setHighLightKeys(nextProps)
+    // this.setHighLightKeys(nextProps)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -74,7 +75,7 @@ class DefaultLayout extends Component {
 
   }
   render() {
-    const { openKeys, selectedKeys } = this.state
+    const { current } = this.state;
     const { username, userLogout } = this.props;
     return (
       <Layout className="layout">
@@ -86,14 +87,19 @@ class DefaultLayout extends Component {
           <Sider width={200}>
             <Menu
               mode="inline"
-              openKeys={openKeys}
-              selectedKeys={selectedKeys}
-              onOpenChange={this.handleOpenChange}
+              defaultOpenKeys={['blog']}
+              // selectedKeys={selectedKeys}
+              selectedKeys={[current]}
               style={{ height: '100%', borderRight: 0 }}
             >
-              <SubMenu key="blog" title={<span><Icon type="user" />博客管理</span>}>
+              <SubMenu key="blog" title={<span><Icon type="read" />博客管理</span>}>
                 <Menu.Item key="blog">
                   <NavLink to="/blog">博客列表</NavLink>
+                </Menu.Item>
+              </SubMenu>
+              <SubMenu key="member" title={<span><Icon type="user" />成员管理</span>}>
+                <Menu.Item key="member">
+                  <NavLink to="/member">成员列表</NavLink>
                 </Menu.Item>
               </SubMenu>
             </Menu>

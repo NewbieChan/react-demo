@@ -3,6 +3,7 @@ import Blog from '../pages/blog';
 import BlogDetail from '../pages/blog/Detail';
 import BlogForm from '../pages/blog/BlogForm';
 import Register from '../pages/register';
+import MemberList from '../pages/member';
 
 export default [
   {
@@ -34,4 +35,9 @@ export default [
       },
     ],
   },
-]
+  {
+    path: '/member',
+    component: MemberList, 
+  }
+];
+
